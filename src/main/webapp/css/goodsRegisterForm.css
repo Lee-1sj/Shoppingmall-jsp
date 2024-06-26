@@ -1,0 +1,90 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#listHeader {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#listHeader button {
+    background-color: #4CAF50; /* 녹색 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#listHeader button:hover {
+    background-color: #45a049;
+}
+
+#goodsRegistForm {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#goodsRegistForm ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#goodsRegistForm li {
+    margin-bottom: 15px;
+}
+
+#goodsRegistForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#goodsRegistForm input[type="text"],
+#goodsRegistForm select,
+#goodsRegistForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#goodsRegistForm input[type="file"] {
+    margin-top: 8px;
+}
+
+#goodsRegistForm textarea {
+    resize: vertical;
+}
+
+#goodsRegistForm .label2 {
+    text-align: right;
+}
+
+#registGoods {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+#registGoods:hover {
+    background-color: #45a049;
+}

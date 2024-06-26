@@ -1,0 +1,49 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#mList {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#mList p {
+    font-size: 18px;
+    color: #333;
+}
+
+#mList ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#mList ul li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+#mList button {
+    background-color: #4CAF50; /* 녹색 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+#mList button:hover {
+    background-color: #45a049;
+}

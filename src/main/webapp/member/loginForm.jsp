@@ -4,17 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="/my-shoppingmall/css/form.css"/>
-<script src="/my-shoppingmall/member/login.js?ver=4"></script>
+<script src="/my-shoppingmall/member/login.js?ver=<%=new Date().getTime()%>"></script>
 
 <c:if test="${empty sessionScope.id}">
   <div id="lStatus">
      <ul>
         <li><label for="cid">아이디</label>
             <input id="cid" name="cid" type="email" size="20" 
-              maxlength="50" placeholder="example@kings.com">
+              maxlength="50">
             <label for="cpasswd">비밀번호</label>
             <input id="cpasswd" name="cpasswd" type="password" 
-              size="20" placeholder="6~16자 숫자/문자" maxlength="16">
+              size="20" maxlength="16">
             <button id="uLogin">로그인</button>
             <button id="uRes">회원가입</button>
      </ul>

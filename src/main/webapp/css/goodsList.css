@@ -1,0 +1,92 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.headerText {
+    font-size: 18px;
+    color: #333;
+}
+
+#listHeader button {
+    background-color: #4CAF50; /* 녹색 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+#listHeader button:hover {
+    background-color: #45a049;
+}
+
+#goods {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.goodsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.goodsTable th, .goodsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.titleRow {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.dataRow:hover {
+    background-color: #f9f9f9;
+}
+
+.outOfStock {
+    color: red;
+}
+
+.editButton, .deleteButton {
+    background-color: #4CAF50; /* 녹색 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.editButton:hover {
+    background-color: #45a049;
+}
+
+.deleteButton {
+    background-color: #f44336; /* 빨강 */
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f;
+}
