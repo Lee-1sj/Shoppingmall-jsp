@@ -32,7 +32,7 @@ public class MngrDBBean {
 		ResultSet rs = null;
 		int x = -1;
 
-		SHA256 sha = SHA256.getInsatnce();
+		SHA256 sha = SHA256.getInstance();
 		try {
 			conn = DBUtil.getConnection();
 
@@ -242,48 +242,37 @@ public class MngrDBBean {
 
 	// 쇼핑몰 메인에 표시하기 위해서 사용하는 분류별 신간 상품 목록을 얻어내는 메소드
 	public MngrDataBean[] getGoods(String goods_kind, int count) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		MngrDataBean goodsList[] = null;
-		int i = 0;
+		String sql = "SELECT * FROM (SELECT * FROM goods WHERE goods_kind = ? ORDER BY reg_date DESC) WHERE ROWNUM <= ?";
+		List<MngrDataBean> tempList = new ArrayList<>();
 
-		try {
-			conn = DBUtil.getConnection();
-			String sql = "SELECT * FROM (SELECT * FROM goods WHERE goods_kind = ? ORDER BY reg_date DESC) WHERE ROWNUM <= ?";
-			pstmt = conn.prepareStatement(sql);
+		try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, goods_kind);
 			pstmt.setInt(2, count);
-			rs = pstmt.executeQuery();
 
-			List<MngrDataBean> tempList = new ArrayList<>();
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					MngrDataBean goods = new MngrDataBean();
+					goods.setGoods_id(rs.getInt("goods_id"));
+					goods.setGoods_kind(rs.getString("goods_kind"));
+					goods.setGoods_title(rs.getString("goods_title"));
+					goods.setGoods_price(rs.getInt("goods_price"));
+					goods.setGoods_count(rs.getInt("goods_count"));
+					goods.setGoods_size(rs.getString("goods_size"));
+					goods.setGoods_image(rs.getString("goods_image"));
+					goods.setDiscount_rate(rs.getInt("discount_rate"));
+					goods.setReg_date(rs.getTimestamp("reg_date"));
 
-			while (rs.next()) {
-				MngrDataBean goods = new MngrDataBean();
-				goods.setGoods_id(rs.getInt("goods_id"));
-				goods.setGoods_kind(rs.getString("goods_kind"));
-				goods.setGoods_title(rs.getString("goods_title"));
-				goods.setGoods_price(rs.getInt("goods_price"));
-				goods.setGoods_count(rs.getInt("goods_count"));
-				goods.setGoods_size(rs.getString("goods_size"));
-				goods.setGoods_image(rs.getString("goods_image"));
-				goods.setDiscount_rate(rs.getInt("discount_rate"));
-				goods.setReg_date(rs.getTimestamp("reg_date"));
-
-				tempList.add(goods);
+					tempList.add(goods);
+				}
 			}
-
-			if (!tempList.isEmpty()) {
-				goodsList = new MngrDataBean[tempList.size()];
-				goodsList = tempList.toArray(goodsList);
-			}
-
-		} catch (Exception ex) {
+		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {
-			DBUtil.closeResource(rs, pstmt, conn);
 		}
-		return goodsList;
+
+		if (!tempList.isEmpty()) {
+			return tempList.toArray(new MngrDataBean[0]);
+		}
+		return null;
 	}
 
 	// goodsId에 해당하는 상품의 정보를 얻어내는 메소드로

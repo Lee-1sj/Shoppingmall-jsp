@@ -1,0 +1,127 @@
+@charset "UTF-8";
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+.box2 {
+	background: #fff;
+	border: 1px solid #ccc;
+	padding: 20px;
+	margin: 20px auto;
+	max-width: 800px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 카테고리 리스트 */
+#cata ul {
+	list-style: none;
+	padding: 0;
+}
+
+#cata ul li {
+	display: inline;
+	margin-right: 10px;
+}
+
+#cata ul li a {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+}
+
+#cata ul li a:hover {
+	color: #007bff;
+}
+
+/* 상품 상세 정보 */
+#showGoods {
+	margin-top: 20px;
+}
+
+.vhcenter {
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.vhcenter td {
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+.contentimage {
+	width: 200px;
+	height: auto;
+}
+
+.b {
+	font-weight: bold;
+}
+
+.bred {
+	color: red;
+	font-weight: bold;
+}
+
+/* 상품 QnA */
+#showQna {
+	margin-top: 20px;
+}
+
+#showQna ul {
+	list-style: none;
+	padding: 0;
+}
+
+#showQna ul li {
+	margin-bottom: 10px;
+}
+
+#showQna .b {
+	font-weight: bold;
+}
+
+#showQna .date {
+	color: #888;
+	font-size: 0.9em;
+}
+
+button {
+	background: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background: #0056b3;
+}
+
+/* 입력 필드 */
+input[type="text"] {
+	padding: 5px;
+	width: 50px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.hleft {
+	text-align: left;
+}
+
+.ch {
+	border-top: 1px solid #ccc;
+	margin-top: 20px;
+}
+
+.date {
+	font-size: 0.8em;
+	color: #888;
+}

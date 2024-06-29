@@ -1,0 +1,71 @@
+@charset "UTF-8";
+.box {
+	max-width: 600px;
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
+}
+
+.box ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.box ul li {
+	margin-bottom: 15px;
+	display: flex;
+	flex-direction: column;
+}
+
+.box label {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.box textarea {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	resize: vertical;
+	min-height: 200px;
+}
+
+.box button {
+	padding: 10px 20px;
+	margin-right: 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: #007bff;
+	color: #fff;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
+
+.box button#cancel {
+	background-color: #6c757d;
+}
+
+.box button:hover {
+	background-color: #0056b3;
+}
+
+.box button#cancel:hover {
+	background-color: #5a6268;
+}
+
+@media ( max-width : 600px) {
+	.box {
+		padding: 15px;
+	}
+	.box ul li {
+		flex-direction: column;
+	}
+	.box button {
+		margin-bottom: 10px;
+		width: 100%;
+	}
+}

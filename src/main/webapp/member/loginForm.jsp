@@ -10,13 +10,12 @@
   <div id="lStatus">
      <ul>
         <li><label for="cid">아이디</label>
-            <input id="cid" name="cid" type="email" size="20" 
-              maxlength="50">
+            <input id="cid" name="cid" type="email" size="20" maxlength="50">
             <label for="cpasswd">비밀번호</label>
-            <input id="cpasswd" name="cpasswd" type="password" 
-              size="20" maxlength="16">
+            <input id="cpasswd" name="cpasswd" type="password" size="20" maxlength="16">
             <button id="uLogin">로그인</button>
             <button id="uRes">회원가입</button>
+        </li>    
      </ul>
   </div>
 </c:if>
@@ -29,16 +28,16 @@
                <tr height="10">
                  <td><button id="uLogout" onclick="uLogout()">로그아웃</button></td>
                  <td><button id="uUpdate" onclick="uUpdate()">회원 정보 변경</button></td>
-                 <td><form id="cartForm" method="post" action="/shoppingmall/cartList.do">
+                 <td><form id="cartForm" method="post" action="/my-shoppingmall/cartList.do">
                    <input type="hidden" name="buyer" value="${sessionScope.id}">
                    <input type="submit" name="cart" value="장바구니"></form></td>
-                 <td><form id="buyForm" method="post" action="/shoppingmall/buyList.do">
+                 <td><form id="buyForm" method="post" action="/my-shoppingmall/buyList.do">
                    <input type="hidden" name="buyer" value="${sessionScope.id}">
                    <input type="submit" name="buy" value="구매내역"></form></td>
                  </tr>
              </table>
-        </div>     
-            
+        	</div>     
+       </li>       
      </ul>
   </div>
 </c:if> 
