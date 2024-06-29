@@ -58,7 +58,50 @@ public class QnaDBBean {
 			DBUtil.closeResource(rs, pstmt, conn);
 		}
 		return x;
-	} //end of insertArticle()
+	} // end of insertArticle()
+
+	// qna테이블에 글을 추가 - 관리자가 작성한 답변
+	@SuppressWarnings("resource")
+	public int insertArticle(QnaDataBean article, int qna_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int x = 0;
+		String sql = "";
+
+		try {
+			conn = DBUtil.getConnection();
+
+			// 쿼리를 작성: qna 테이블에 새로운 레코드 추가
+			sql = "INSERT INTO qna (qna_id, goods_id, goods_title, qna_writer, qna_content, group_id, qora, reply, reg_date) ";
+			sql += "VALUES (qna_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, article.getGoods_id());
+			pstmt.setString(2, article.getGoods_title());
+			pstmt.setString(3, article.getQna_writer());
+			pstmt.setString(4, article.getQna_content());
+			pstmt.setInt(5, article.getGroup_id());
+			pstmt.setInt(6, article.getQora());
+			pstmt.setInt(7, article.getReply());
+			pstmt.setTimestamp(8, article.getReg_date());
+			pstmt.executeUpdate();
+
+			// 기존 pstmt를 닫고 새로운 pstmt 생성
+			pstmt.close();
+
+			sql = "UPDATE qna SET reply = ? WHERE qna_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, qna_id);
+			pstmt.executeUpdate();
+
+			x = 1; // 레코드 추가 성공
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			DBUtil.closeResource(pstmt, conn);
+		}
+		return x;
+	}
 
 	// qna 테이블에 저장된 전체 글의 수를 얻어냄
 	public int getArticleCount() {
@@ -80,7 +123,7 @@ public class QnaDBBean {
 			DBUtil.closeResource(rs, pstmt, conn);
 		}
 		return count;
-	} //end of getArticleCount()
+	} // end of getArticleCount()
 
 	// 특정 상품에 대해 작성한 qna 글의 수를 얻어냄
 	public int getArticleCount(int goods_id) {
@@ -104,7 +147,7 @@ public class QnaDBBean {
 			DBUtil.closeResource(rs, pstmt, conn);
 		}
 		return count;
-	} //end of getArticleCount(goods_id)
+	} // end of getArticleCount(goods_id)
 
 	// 지정한 수에 해당하는 qna 글의 수를 얻어냄
 	public List<QnaDataBean> getArticles(int count) {
@@ -144,7 +187,7 @@ public class QnaDBBean {
 			DBUtil.closeResource(rs, pstmt, conn);
 		}
 		return articleList; // List객체의 레퍼런스를 리턴
-	} //end of getArticles(count)
+	} // end of getArticles(count)
 
 	// QnA 글 수정폼에서 사용할 글의 내용
 	public QnaDataBean updateGetArticle(int qna_id) {
@@ -177,7 +220,7 @@ public class QnaDBBean {
 			DBUtil.closeResource(rs, pstmt, conn);
 		}
 		return article;
-	} //end of updateGetArticle(qna_id)
+	} // end of updateGetArticle(qna_id)
 
 	// QnA글 수정 수정처리에서 사용
 	public int updateArticle(QnaDataBean article) {
@@ -194,7 +237,7 @@ public class QnaDBBean {
 			int i = pstmt.executeUpdate();
 
 			if (i > 0) {
-				result = 1; //업데이트 성공
+				result = 1; // 업데이트 성공
 			} else {
 				result = 0;
 			}
@@ -204,30 +247,30 @@ public class QnaDBBean {
 			DBUtil.closeResource(pstmt, conn);
 		}
 		return result;
-	} //end of updateArticle(QnaDataBean article)
+	} // end of updateArticle(QnaDataBean article)
 
 	// QnA글 수정삭제처리시 사용
 	public int deleteArticle(int qna_id) {
-		 Connection conn = null;
-		    PreparedStatement pstmt = null;
-		    int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = -1;
 
-		    try {
-		        conn = DBUtil.getConnection();
-		        pstmt = conn.prepareStatement("DELETE FROM qna WHERE qna_id=?");
-		        pstmt.setInt(1, qna_id);
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement("DELETE FROM qna WHERE qna_id=?");
+			pstmt.setInt(1, qna_id);
 
-		        int i = pstmt.executeUpdate();
-		        if (i > 0) {
-		            result = 1; //삭제 성공
-		        } else {
-		            result = 0; 
-		        }
-		    } catch (Exception ex) {
-		        ex.printStackTrace();
-		    } finally {
-		        DBUtil.closeResource(pstmt, conn);
-		    }
-		    return result;
-	} //end of deleteArticle()
+			int i = pstmt.executeUpdate();
+			if (i > 0) {
+				result = 1; // 삭제 성공
+			} else {
+				result = 0;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			DBUtil.closeResource(pstmt, conn);
+		}
+		return result;
+	} // end of deleteArticle()
 }

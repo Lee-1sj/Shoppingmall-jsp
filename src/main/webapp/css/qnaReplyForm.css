@@ -1,0 +1,73 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+#writeForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#writeForm ul {
+    list-style-type: none;
+}
+
+#writeForm ul li {
+    margin-bottom: 20px;
+}
+
+#writeForm ul li p {
+    margin-bottom: 10px;
+}
+
+#writeForm ul li label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#writeForm ul li textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+#writeForm ul li.button-group {
+    text-align: right;
+}
+
+#writeForm ul li.button-group button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+#writeForm ul li.button-group button#cancle {
+    background-color: #f44336;
+}
+
+#writeForm ul li.button-group button:hover {
+    opacity: 0.8;
+}
