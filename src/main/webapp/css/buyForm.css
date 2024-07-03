@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+#cartArea, #buyArea {
+	width: 80%;
+	margin: 20px auto;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+/* 테이블 */
+#cartTable, #ordererInfo, #deliveryInfo {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+#cartTable td, #ordererInfo td, #deliveryInfo td {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+#cartTable .cen, #ordererInfo .cen, #deliveryInfo .cen {
+	text-align: center;
+}
+
+#cartTable .b {
+	font-weight: bold;
+}
+
+/* 섹션 제목 */
+.sectionTitle {
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px 0;
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ddd;
+}
+
+/* 이미지 */
+.cartimage {
+	width: 50px;
+	height: auto;
+	vertical-align: middle;
+}
+
+/* 인풋 */
+input[type="text"] {
+	width: calc(100% - 22px);
+	padding: 10px;
+	margin: 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+/* 셀렉트 박스 */
+select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+/* 버튼 */
+input[type="submit"], #cancel {
+	background: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+input[type="submit"]:hover, #cancel:hover {
+	background: #0056b3;
+}
+
+.submitButtons {
+	text-align: center;
+}

@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* 주문 결과 영역 */
+#orderResult {
+    width: 80%;
+    margin: 50px auto 20px;
+    padding: 20px;
+    background: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    color: #00796b;
+}
+
+#orderResult p {
+    margin: 0;
+}
+
+/* 구매 처리 영역 */
+#buyProcess {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#buyProcess form {
+    display: inline-block;
+}
+
+#buyProcess input[type="submit"] {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#buyProcess input[type="submit"]:hover {
+    background: #0056b3;
+}

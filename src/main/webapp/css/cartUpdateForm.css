@@ -1,1 +1,35 @@
 @charset "UTF-8";
+#cartUpdate {
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#cartUpdateForm {
+    display: inline-block;
+}
+
+#cartUpdateForm input[type="text"] {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+}
+
+#cartUpdateForm input[type="submit"] {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#cartUpdateForm input[type="submit"]:hover {
+    background: #218838;
+}

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+/* 카테고리 */
+#cata {
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+#cata ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cata li {
+    display: inline;
+    margin-right: 10px;
+}
+
+#cata a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#cata a:hover {
+    background: #0779e4;
+    color: #fff;
+}
+
+/* 버튼 */
+#goShop {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#goShop button {
+    background: #0779e4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#goShop button:hover {
+    background: #005bb5;
+}
+
+/* 장바구니 리스트 */
+#cartList {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#cartList table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#cartList th, #cartList td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+#cartList th {
+    background: #f4f4f4;
+}
+
+#cartList .cartimage {
+    width: 50px;
+    height: auto;
+}
+
+#cartList .b {
+    font-weight: bold;
+}
+
+#cartList input[type="text"] {
+    width: 50px;
+    text-align: center;
+}
+
+#cartList button {
+    background: #0779e4;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#cartList button:hover {
+    background: #005bb5;
+}
+
+/* 구매 정보 */
+#cinfo {
+    margin-top: 20px;
+}
+
+#cinfo table {
+    width: 100%;
+}
+
+#cinfo td {
+    padding: 10px;
+    text-align: center;
+}
+
+#cinfo input[type="submit"] {
+    background: #0779e4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#cinfo input[type="submit"]:hover {
+    background: #005bb5;
+}
