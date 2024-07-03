@@ -30,10 +30,12 @@
                  <td><button id="uUpdate" onclick="uUpdate()">회원 정보 변경</button></td>
                  <td><form id="cartForm" method="post" action="/my-shoppingmall/cartList.do">
                    <input type="hidden" name="buyer" value="${sessionScope.id}">
-                   <input type="submit" name="cart" value="장바구니"></form></td>
+                   <input type="submit" name="cart" value="장바구니"></form>
+                 </td>
                  <td><form id="buyForm" method="post" action="/my-shoppingmall/buyList.do">
                    <input type="hidden" name="buyer" value="${sessionScope.id}">
-                   <input type="submit" name="buy" value="구매내역"></form></td>
+                   <input type="submit" name="buy" value="구매내역"></form>
+                 </td>
                  </tr>
              </table>
         	</div>     

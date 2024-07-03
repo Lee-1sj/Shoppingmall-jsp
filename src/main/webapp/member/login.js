@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	uResButton.addEventListener('click', function() {
 		window.location.href = '/my-shoppingmall/registerForm.do';
 	});
-	
+
 	// [로그인] 버튼 클릭
 	var uLoginButton = document.getElementById('uLogin');
 	uLoginButton.addEventListener('click', function() {
@@ -43,27 +43,27 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.error('Request failed');
 		};
 
-		xhr.send("id="+encodeURIComponent(query.id)+
-		 "&passwd="+encodeURIComponent(query.passwd));
+		xhr.send("id=" + encodeURIComponent(query.id) +
+			"&passwd=" + encodeURIComponent(query.passwd));
 	});
 });
-	
+
 // [회원 정보 변경] 버튼 클릭
-function uUpdate(){
+function uUpdate() {
 	alert("회원 정보 변경");
 	window.location.href = '/my-shoppingmall/modify.do';
 }
 
 // [로그아웃] 버튼 클릭
-function uLogout(){
-		alert("로그아웃");
-		fetch('/my-shoppingmall/logout.do', {
-			method: 'POST'
-		}).then(function(response) {
-			return response.text();
-		}).then(function(data) {
-			window.location.href = '/my-shoppingmall/index.do';
-		}).catch(function(error) {
-			console.error('Error:', error);
-		});
+function uLogout() {
+	alert("로그아웃");
+	fetch('/my-shoppingmall/logout.do', {
+		method: 'POST'
+	}).then(function(response) {
+		return response.text();
+	}).then(function(data) {
+		window.location.href = '/my-shoppingmall/index.do';
+	}).catch(function(error) {
+		console.error('Error:', error);
+	});
 }
