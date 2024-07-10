@@ -64,7 +64,7 @@
 					주문금액 :
 					<fmt:formatNumber value="${total}" type="number" pattern="#,##0" />
 					원
-				</p>
+				</p>	
 				<c:set var="total" value="0" />
 				<c:set var="pid" value="${nid}" />
 			</c:if>
