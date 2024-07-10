@@ -45,8 +45,8 @@
 				<tr>
 					<td>${buylist.getBuy_id()}</td>
 					<td>
-						<img src="/my-shoppingmall/goodsimage/${buylist.getBook_image()}"
-						class="cartimage">${buylist.getBook_title()}
+						<img src="/my-shoppingmall/goodsimage/${buylist.getGoods_image()}"
+						class="cartimage">${buylist.getGoods_title()}
 					</td>
 					<td><fmt:formatNumber
 							value="${buylist.getBuy_price()}" type="number" pattern="#,##0" />원</td>
