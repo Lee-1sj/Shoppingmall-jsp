@@ -6,7 +6,6 @@ body {
     box-sizing: border-box;
 }
 
-/* 헤더 스타일 */
 #header {
     display: flex;
     justify-content: space-between;
@@ -29,7 +28,6 @@ body {
     background-color: #45a049;
 }
 
-/* 폼 스타일 */
 .form-box {
     max-width: 600px;
     margin: 20px auto;
@@ -76,8 +74,8 @@ body {
 }
 
 .submit-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -86,5 +84,5 @@ body {
 }
 
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: #dee2e6;
 }

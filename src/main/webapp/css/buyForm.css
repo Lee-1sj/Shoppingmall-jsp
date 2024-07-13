@@ -9,7 +9,6 @@
 	border-radius: 5px;
 }
 
-/* 테이블 */
 #cartTable, #ordererInfo, #deliveryInfo {
 	width: 100%;
 	border-collapse: collapse;
@@ -29,7 +28,6 @@
 	font-weight: bold;
 }
 
-/* 섹션 제목 */
 .sectionTitle {
 	font-size: 1.2em;
 	font-weight: bold;
@@ -39,14 +37,12 @@
 	border-bottom: 1px solid #ddd;
 }
 
-/* 이미지 */
 .cartimage {
 	width: 50px;
 	height: auto;
 	vertical-align: middle;
 }
 
-/* 인풋 */
 input[type="text"] {
 	width: calc(100% - 22px);
 	padding: 10px;
@@ -55,7 +51,6 @@ input[type="text"] {
 	border-radius: 3px;
 }
 
-/* 셀렉트 박스 */
 select {
 	width: 100%;
 	padding: 10px;
@@ -63,7 +58,6 @@ select {
 	border-radius: 3px;
 }
 
-/* 버튼 */
 input[type="submit"], #cancel {
 	background: #007bff;
 	color: #fff;

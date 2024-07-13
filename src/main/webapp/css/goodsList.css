@@ -8,11 +8,12 @@ body {
 
 #listHeader {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
+    gap: 10px;
 }
 
 .headerText {
@@ -36,7 +37,7 @@ body {
 }
 
 #goods {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -88,7 +89,7 @@ body {
 }
 
 .deleteButton {
-    background-color: #f44336; /* 빨강 */
+    background-color: #f44336; 
 }
 
 .deleteButton:hover {

@@ -26,7 +26,6 @@ label {
     margin-bottom: 5px;
 }
 
-/* 입력 필드 */
 input[type="email"],
 input[type="password"],
 input[type="text"],
@@ -38,7 +37,6 @@ input[type="tel"] {
     box-sizing: border-box;
 }
 
-/* 버튼 스타일 */
 button {
     display: inline-block;
     padding: 10px 20px;
@@ -55,7 +53,6 @@ button:hover {
     background-color: #218838;
 }
 
-/* 취소 버튼 */
 button#cancel {
     background-color: #dc3545;
 }
@@ -64,7 +61,6 @@ button#cancel:hover {
     background-color: #c82333;
 }
 
-/* 중앙 정렬 클래스 */
 .center {
     text-align: center;
     font-size: 18px;
@@ -72,7 +68,6 @@ button#cancel:hover {
     margin-bottom: 20px;
 }
 
-/* 경고 메시지 */
 small.cau {
     display: block;
     margin-top: 5px;

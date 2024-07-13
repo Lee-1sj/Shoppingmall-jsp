@@ -12,7 +12,6 @@ body {
     line-height: 1.6;
 }
 
-/* 카테고리 */
 #cata {
     margin: 20px;
     padding: 20px;
@@ -43,7 +42,6 @@ body {
     color: #007BFF;
 }
 
-/* 쇼핑몰 메인 */
 #shop {
     margin: 20px;
     padding: 20px;
@@ -52,7 +50,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* 각 상품 항목 간의 간격 */
+    gap: 20px;
 }
 
 #shop .b {
@@ -103,23 +101,22 @@ body {
     color: red;
 }
 
-/* Flexbox 추가 스타일 */
 .product-item {
     border: 1px solid #ddd;
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    flex: 1 1 calc(50% - 20px); /* 2개씩 배치하고 간격 조절 */
+    flex: 1 1 calc(50% - 20px); 
     box-sizing: border-box;
-    max-width: calc(50% - 20px); /* 최대 너비 설정 */
+    max-width: calc(50% - 20px); 
 }
 
 .product-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between; /* 각 행에 항목들을 고르게 배치 */
+    justify-content: space-between; 
 }
 
 .product-details {

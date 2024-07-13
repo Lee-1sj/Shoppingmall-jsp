@@ -76,8 +76,8 @@ body {
 }
 
 #registGoods {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -86,5 +86,5 @@ body {
 }
 
 #registGoods:hover {
-    background-color: #45a049;
+    background-color: #dee2e6;
 }
