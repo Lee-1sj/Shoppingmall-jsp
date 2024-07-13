@@ -16,6 +16,7 @@ create table manager(
  managerPasswd varchar2(60) not null
 );
 
+
 --goods table
 create table goods(
     goods_id number not null primary key,
@@ -110,6 +111,10 @@ select * from cart;
 select * from buy;
 select * from board;
 
+-------------------------- transaction --------------------------
+COMMIT;
+ROLLBACK;
+
 -------------------------- insert --------------------------
 
 --member
@@ -121,47 +126,46 @@ insert into member(id, passwd, name, reg_date, address, tel)
 values('kimrr12123@naver.com','1234','김맹구', SYSDATE , '서울시 강남구', '010-5555-5555');
 
 --manager
-insert into manager(managerId,managerPasswd)
-values('lsj','123456');
+insert into manager(managerId,managerPasswd) values('leelee','123456');
 
 --goods
 -- 예시 데이터 (상의)
 INSERT INTO goods (
     goods_id, goods_kind, goods_title, goods_price, goods_count, goods_size, goods_image, goods_content, discount_rate, reg_date
 ) VALUES (
-    goods_seq.NEXTVAL, '100', 'Tom Comics T-shirt', 10, 150, 'Large', '1.jpg', 'Tom comics T-shirt with logo', 10, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '100', 'Tom Comics T-shirt', 35000, 150, 'Large', '1.jpg', 'Tom comics T-shirt with logo', 10, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '100', 'Sweaterknitted T-shirt', 15, 100, 'Medium', '2.jpg', 'Yellow wool sweaterknitted T-shirt', 10, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '100', 'Sweaterknitted T-shirt', 25000, 100, 'Medium', '2.jpg', 'Yellow wool sweaterknitted T-shirt', 10, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '100', 'White T-shirt', 5, 80, 'Large', '3.jpg', 'Comfortable white T-shirt with logo', 15, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '100', 'White T-shirt', 50000, 80, 'Large', '3.jpg', 'Comfortable white T-shirt with logo', 15, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '100', 'White T-shirt', 5, 70, 'Small', '4.jpg', 'Stylish white T-shirt with logo', 15, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '100', 'White T-shirt', 50000, 70, 'Small', '4.jpg', 'Stylish white T-shirt with logo', 15, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '100', 'Sheesh T-shirt', 10, 100, 'Large', '6.jpg', 'Sheesh T-shirt with logo', 10, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '100', 'Sheesh T-shirt', 70000, 100, 'Large', '6.jpg', 'Sheesh T-shirt with logo', 10, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '100', 'Cartoon Black T-shirt', 5, 100, 'Large', '7.jpg', 'Spray cartoon graphic ss black T-shirt with logo', 10, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '100', 'Cartoon Black T-shirt', 20000, 100, 'Large', '7.jpg', 'Spray cartoon graphic ss black T-shirt with logo', 10, CURRENT_TIMESTAMP
 );
 
 -- 예시 데이터 (하의)
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '200', 'All Sunday Wide Denim Pants"', 20, 100, 'Medium', 'a.jpg', 'Comfortable All Sunday wide denim pants', 15, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '200', 'All Sunday Wide Denim Pants"', 200000, 100, 'Medium', 'a.jpg', 'Comfortable All Sunday wide denim pants', 15, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '200', 'Extra Wide Denim Pants', 25, 100, 'Large', 'b.jpg', 'Deep blue Extra Wide Denim Pants', 15, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '200', 'Extra Wide Denim Pants', 250000, 100, 'Large', 'b.jpg', 'Deep blue Extra Wide Denim Pants', 15, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '200', 'Carpenter Bermuda Pleated Denim Shorts', 15, 100, 'Medium', 'c.jpg', 'Carpenter bermuda pleated denim shorts indigo blue', 5, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '200', 'Carpenter Bermuda Pleated Denim Shorts', 150000, 100, 'Medium', 'c.jpg', 'Carpenter bermuda pleated denim shorts indigo blue', 5, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '200', 'Damage Washed Denim Pants', 25, 100, 'Large', 'd.jpg', 'Damage washed denim pants medium blue cool air', 5, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '200', 'Damage Washed Denim Pants', 250000, 100, 'Large', 'd.jpg', 'Damage washed denim pants medium blue cool air', 5, CURRENT_TIMESTAMP
 );
 INSERT INTO goods VALUES (
-    goods_seq.NEXTVAL, '200', 'Wide Denim Shorts', 20, 100, 'Small', 'f.jpg', 'Wide denim shorts dark grey', 5, CURRENT_TIMESTAMP
+    goods_seq.NEXTVAL, '200', 'Wide Denim Shorts', 200000, 100, 'Small', 'f.jpg', 'Wide denim shorts dark grey', 5, CURRENT_TIMESTAMP
 );
 
 --bank
@@ -181,6 +185,5 @@ drop table cart;
 drop table buy;
 drop table board;
 
--------------------------- transaction --------------------------
-COMMIT;
-ROLLBACK;
+DELETE FROM MANAGER WHERE  managerId = 'lsj';
+SELECT * FROM manager WHERE managerId = 'lsj';

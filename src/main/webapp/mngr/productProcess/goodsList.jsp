@@ -11,9 +11,9 @@
 </c:if>
 
 <div id="listHeader">
-    <p class="headerText">등록된 상품 목록(전체 상품:${count})</p>
+    <p class="headerText">등록 상품 목록 (총 ${count}개의 상품)</p>
     <button id="regist">상품 등록</button>
-    <button id="goodsMain">관리자 메인으로</button>
+    <button id="goodsMain">관리자 메인</button>
 </div>
 
 <div id="goods">

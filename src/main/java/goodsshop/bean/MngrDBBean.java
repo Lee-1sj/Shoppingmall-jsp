@@ -27,37 +27,43 @@ public class MngrDBBean {
 
 	// 관리자 인증 메소드
 	public int userCheck(String id, String passwd) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int x = -1;
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    int x = -1;
 
-		SHA256 sha = SHA256.getInstance();
-		try {
-			conn = DBUtil.getConnection();
+	    SHA256 sha = SHA256.getInstance();
+	    try {
+	        conn = DBUtil.getConnection();
 
-			String orgPass = passwd;
-			String shaPass = sha.getSha256(orgPass.getBytes());
+	        String orgPass = passwd;
+	        String shaPass = sha.getSha256(orgPass.getBytes());
 
-			pstmt = conn.prepareStatement("select managerPasswd from manager where managerId = ?");
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
+	        System.out.println("Original Password: " + orgPass);
+	        System.out.println("SHA-256 Password: " + shaPass);
 
-			if (rs.next()) {// 해당 아이디가 있으면 수행
-				String dbpasswd = rs.getString("managerPasswd");
-				if (BCrypt.checkpw(shaPass, dbpasswd))
-					x = 1; // 인증성공
-				else
-					x = 0; // 비밀번호 틀림
-			} else// 해당 아이디 없으면 수행
-				x = -1;// 아이디 없음
+	        pstmt = conn.prepareStatement("select managerPasswd from manager where managerId = ?");
+	        pstmt.setString(1, id);
+	        rs = pstmt.executeQuery();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			DBUtil.closeResource(rs, pstmt, conn);
-		}
-		return x;
+	        if (rs.next()) { // 해당 아이디가 있으면 수행
+	            String dbpasswd = rs.getString("managerPasswd");
+	            System.out.println("Database Password: " + dbpasswd);
+	            if (BCrypt.checkpw(shaPass, dbpasswd)) {
+	                x = 1; // 인증성공
+	            } else {
+	                x = 0; // 비밀번호 틀림
+	            }
+	        } else { // 해당 아이디 없으면 수행
+	            x = -1; // 아이디 없음
+	        }
+
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        DBUtil.closeResource(rs, pstmt, conn);
+	    }
+	    return x;
 	} // end of userCheck()
 
 	// 굿즈 등록 메소드
@@ -271,8 +277,9 @@ public class MngrDBBean {
 
 		if (!tempList.isEmpty()) {
 			return tempList.toArray(new MngrDataBean[0]);
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	// goodsId에 해당하는 상품의 정보를 얻어내는 메소드로

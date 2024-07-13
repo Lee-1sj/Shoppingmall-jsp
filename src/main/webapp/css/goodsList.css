@@ -21,8 +21,8 @@ body {
 }
 
 #listHeader button {
-    background-color: #4CAF50; /* 녹색 */
-    color: white;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -32,7 +32,7 @@ body {
 }
 
 #listHeader button:hover {
-    background-color: #45a049;
+    background-color: #dee2e6;
 }
 
 #goods {
@@ -70,8 +70,8 @@ body {
 }
 
 .editButton, .deleteButton {
-    background-color: #4CAF50; /* 녹색 */
-    color: white;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -79,8 +79,12 @@ body {
     border-radius: 4px;
 }
 
+.deleteButton {
+	color: white;
+}
+
 .editButton:hover {
-    background-color: #45a049;
+    background-color: #dee2e6;
 }
 
 .deleteButton {

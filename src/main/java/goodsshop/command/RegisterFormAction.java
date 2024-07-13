@@ -10,6 +10,7 @@ public class RegisterFormAction implements CommandAction {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setAttribute("type", Integer.valueOf(1));
+		System.out.println(request.getAttribute("type"));
 		return "/member/registerForm.jsp";
 	}
 

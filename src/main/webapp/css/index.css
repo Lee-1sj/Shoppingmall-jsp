@@ -20,6 +20,11 @@ body {
     font-size: 24px;
 }
 
+#logo a {
+	text-decoration: none;
+	color: white;
+}
+
 #auth {
     display: flex;
 }

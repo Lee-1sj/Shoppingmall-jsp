@@ -42,6 +42,8 @@ public class Controller extends HttpServlet {
 		// realFolder를 웹어플리케이션 시스템상의 절대경로로 변경
 		String realPath = context.getRealPath(realFolder) + "\\" + props;
 
+		System.out.println("Loading properties file from: " + realPath); // 경로 확인
+
 		// 명령어와 처리클래스의 매핑정보를 저장할 Properties객체 생성
 		Properties pr = new Properties();
 		FileInputStream f = null;
@@ -50,13 +52,15 @@ public class Controller extends HttpServlet {
 			f = new FileInputStream(realPath);
 			// command.properties의 내용을 Properties객체 pr에 저장
 			pr.load(f);
+			System.out.println("Properties loaded: " + pr); // 파일 내용 확인
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			if (f != null)
 				try {
 					f.close();
-				} catch (IOException ex) {
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 		}
 		// Set객체의 iterator()메소드를 사용해 Iterator객체를 얻어냄
@@ -70,6 +74,7 @@ public class Controller extends HttpServlet {
 				// Object commandInstance = commandClass.newInstance();
 				Object commandInstance = commandClass.getDeclaredConstructor().newInstance();
 				commandMap.put(command, commandInstance);
+				System.out.println("Mapped command: " + command + " to class: " + className);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (InstantiationException e) {
@@ -97,24 +102,49 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		requestPro(request, response);
 	}
-	
-	private void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void requestPro(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String view = null;
 		CommandAction com = null;
 		try {
 			String command = request.getRequestURI();
-	        if(command.indexOf(request.getContextPath()) == 0) 
-	        	command = command.substring(request.getContextPath().length());
-	        System.out.println("command ="+command);
-	        com = (CommandAction)commandMap.get(command); 
-	        System.out.println("com =" + com);
-	        view = com.requestPro(request, response);
-		}catch(Throwable e) {
+			if (command.indexOf(request.getContextPath()) == 0)
+				command = command.substring(request.getContextPath().length());
+			System.out.println("command =" + command);
+			com = (CommandAction) commandMap.get(command);
+			System.out.println("com =" + com);
+
+			if (com == null) {
+				throw new ServletException("No command found for " + command);
+			}
+
+			view = com.requestPro(request, response);
+			System.out.println("view = " + view);
+		} catch (Throwable e) {
 			e.printStackTrace();
+			throw new ServletException(e);
 		}
-		request.setAttribute("type", 1);
-		request.setAttribute("cont",view);
-	    RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+
+		if (view == null) {
+			return;
+		}
+
+		if (view != null && !view.startsWith("/")) {
+			view = "/" + view;
+		}
+
+		Object type = request.getAttribute("type");
+		if (type != null) {
+			System.out.println("Setting type attribute to: " + type);
+			request.setAttribute("type", type);
+		} else {
+			System.out.println("Setting type attribute to default (1)");
+			request.setAttribute("type", 1); // 기본값을 설정 (예: 1은 일반 사용자)
+		}
+		
+		request.setAttribute("cont", view);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 body {
 	font-family: Arial, sans-serif;
 	line-height: 1.6;
@@ -16,7 +17,10 @@ body {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 카테고리 리스트 */
+#cata {
+	text-align: center;
+}
+
 #cata ul {
 	list-style: none;
 	padding: 0;
@@ -37,7 +41,6 @@ body {
 	color: #007bff;
 }
 
-/* 상품 상세 정보 */
 #showGoods {
 	margin-top: 20px;
 }
@@ -68,7 +71,6 @@ body {
 	font-weight: bold;
 }
 
-/* 상품 QnA */
 #showQna {
 	margin-top: 20px;
 }
@@ -92,8 +94,8 @@ body {
 }
 
 button {
-	background: #007bff;
-	color: #fff;
+	background-color: #e9ecef;
+	color: #333;
 	border: none;
 	padding: 10px 20px;
 	cursor: pointer;
@@ -101,10 +103,9 @@ button {
 }
 
 button:hover {
-	background: #0056b3;
+	background-color: #dee2e6;
 }
 
-/* 입력 필드 */
 input[type="text"] {
 	padding: 5px;
 	width: 50px;

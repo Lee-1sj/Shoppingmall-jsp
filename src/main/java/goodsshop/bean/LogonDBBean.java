@@ -28,7 +28,7 @@ public class LogonDBBean {
 
 	// 회원 가입 처리에서 사용하는 메소드
 	public void insertMember(LogonDataBean member) {
-		String sql = "insert into member (id, password, name, reg_date, address, tel) values (?,?,?,?,?,?)";
+		String sql = "insert into member (id, passwd, name, reg_date, address, tel) values (?,?,?,?,?,?)";
 		SHA256 sha = SHA256.getInstance();
 
 		try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {

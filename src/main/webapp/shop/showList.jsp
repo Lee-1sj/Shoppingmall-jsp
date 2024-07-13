@@ -26,37 +26,41 @@
     <c:set var="display" value="전체 목록"/>
   </c:if>
   <c:if test="${goods_kind != 'all'}">
-    <c:set var="display" value="[${goods_kindName}] 분류의 목록"/>
+    <c:set var="display" value="${goods_kindName}"/>
   </c:if>
   
-  <p class="b">${display} : (${count}개)</p>
-  <c:forEach var="goods" items="${goodsList}">
-    <table class="vhcenter">
-      <tr> 
-        <td rowspan="4">
-          <a href="/my-shoppingmall/goodsContent.do?goods_id=${goods.getGoods_id()}&goods_kind=${goods.getGoods_kind()}">
-             <img src="/my-shoppingmall/goodsimage/${goods.getGoods_image()}" class="listimage"></a></td>
-        <td class="vhcenter">
-          <a href="/my-shoppingmall/goodsContent.do?goods_id=${goods.getGoods_id()}&goods_kind=${goods.getGoods_kind()}" class="b">
-              ${goods.getGoods_title()}</a></td>
-        <td rowspan="4">
-          <c:if test="${goods.getGoods_count() == 0}">
-            일시품절
-          </c:if>
-          <c:if test="${goods.getGoods_count() != 0}">
-            구매가능
-          </c:if>
-       </td>      
-       </tr>
-       <tr>
-        <td>사이즈 : ${goods.getGoods_size()}</td></tr>
-       <tr>
-        <td>
-          <c:set var="price" value="${goods.getGoods_price()}"/>
-          <c:set var="rate" value="${goods.getDiscount_rate()}"/>
-          정가 : <fmt:formatNumber value="${price}" type="number" pattern="#,##0"/>원<br>
-          <strong class="bred">판매가: <fmt:formatNumber value="${price * ((100.0 - rate) / 100)}" type="number" pattern="#,##0"/>원</strong>
-        </td></tr> 
-     </table>
-  </c:forEach>
+  <p class="b">&nbsp;&nbsp;&nbsp;${display}</p>
+  <div class="product-container">
+    <c:forEach var="goods" items="${goodsList}">
+      <div class="product-item">
+        <div class="product-details">
+          <div class="product-image">
+            <a href="/my-shoppingmall/goodsContent.do?goods_id=${goods.getGoods_id()}&goods_kind=${goods.getGoods_kind()}">
+              <img src="/my-shoppingmall/goodsimage/${goods.getGoods_image()}" class="listimage">
+            </a>
+          </div>
+          <div class="product-info">
+            <a href="/my-shoppingmall/goodsContent.do?goods_id=${goods.getGoods_id()}&goods_kind=${goods.getGoods_kind()}" class="b">
+              ${goods.getGoods_title()}
+            </a>
+            <p>사이즈 : ${goods.getGoods_size()}</p>
+            <p>
+              <c:set var="price" value="${goods.getGoods_price()}"/>
+              <c:set var="rate" value="${goods.getDiscount_rate()}"/>
+              정가 : <fmt:formatNumber value="${price}" type="number" pattern="#,##0"/>원<br>
+              <strong class="bred">판매가: <fmt:formatNumber value="${price * ((100.0 - rate) / 100)}" type="number" pattern="#,##0"/>원</strong>
+            </p>
+            <p>
+              <c:if test="${goods.getGoods_count() == 0}">
+                일시품절
+              </c:if>
+              <c:if test="${goods.getGoods_count() != 0}">
+                구매가능
+              </c:if>
+            </p>
+          </div>
+        </div>
+      </div>
+    </c:forEach>
+  </div>
 </div>

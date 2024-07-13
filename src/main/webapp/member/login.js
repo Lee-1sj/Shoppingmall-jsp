@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// [로그인] 버튼 클릭
 	var uLoginButton = document.getElementById('uLogin');
 	uLoginButton.addEventListener('click', function() {
-		alert("login start2");
+		alert("로그인");
 		var query = {
 			id: document.getElementById('cid').value,
 			passwd: document.getElementById('cpasswd').value

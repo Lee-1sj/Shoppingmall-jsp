@@ -12,21 +12,24 @@ body {
     line-height: 1.6;
 }
 
-/* 카테고리  */
 #cata {
     margin: 20px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
 }
 
 #cata ul {
     list-style-type: none;
+    display: flex;
+    justify-content: center;
 }
 
 #cata ul li {
-    margin: 10px 0;
+    margin: 0 15px;
 }
 
 #cata ul li a {
@@ -39,17 +42,29 @@ body {
     color: #007BFF;
 }
 
-/* 쇼핑몰 메인 */
 #shop {
     margin: 20px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
 }
 
 #shop .b {
     font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+#shop .more {
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
 }
 
 #shop .vhcenter {
@@ -85,4 +100,31 @@ body {
 
 .bred {
     color: red;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    flex: 1 1 calc(45% - 20px); 
+    box-sizing: border-box;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.product-image {
+    flex: 1;
+}
+
+.product-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

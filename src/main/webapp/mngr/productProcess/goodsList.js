@@ -12,22 +12,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// [수정] 버튼을 클릭하면 자동 실행
+// [수정] 버튼을 클릭
 function edit(editBtn) {
     var rStr = editBtn.name;
     var arr = rStr.split(",");
-    var query = "/my-shoppingmall/mg/goodsUpdateForm.do?goods_id=" + arr[0];
-    query += "&goods_kind=" + arr[1];
+    var query = arr[0] + "번의 상품 수정";
+    var query2 = "/my-shoppingmall/mg/goodsUpdateForm.do?goods_id=" + arr[0];
+    query2 += "&goods_kind=" + arr[1];
     alert(query);
-    window.location.href = query; 
+    window.location.href = query2; 
 }
 
-// [삭제] 버튼을 클릭하면 자동 실행
+// [삭제] 버튼을 클릭
 function del(delBtn) {
     var rStr = delBtn.name;
     var arr = rStr.split(",");
+    var query2 = arr[0] + "번의 상품 삭제";
     var query = "/my-shoppingmall/mg/goodsDeletePro.do?goods_id=" + arr[0];
     query += "&goods_kind=" + arr[1];
-    alert(query);
+    alert(query2);
     window.location.href = query; 
 }

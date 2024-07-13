@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/my-shoppingmall/css/index.css"/>
 <div id="header">
   <div id="logo" class="box">
-    <span class="noborder">Shopping Mall</span>
+    <span class="noborder"><a href="/my-shoppingmall/index.do">Shopping Mall</a></span>
   </div>
   <div id="auth" class="box">
     <c:if test="${type == 0}">
@@ -16,5 +16,5 @@
   </div>
 </div>
 <div id="content" class="box2">
- <%--  <jsp:include page="${cont}"/> --%>
+	<jsp:include page="${cont}"/>
 </div>

@@ -62,7 +62,7 @@
 			</td>
 		</tr>
 		<tr class="ch">
-			<td colspan="2" class="hleft">${goods.getGoods_content()}</td>
+			<td colspan="2" class="hleft" style="text-align: center;">${goods.getGoods_content()}</td>
 		</tr>
 	</table>
 </div>
