@@ -1,32 +1,26 @@
 @charset "UTF-8";
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    padding: 20px;
-    line-height: 1.6;
-}
 
 #listHeader {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 20px auto;
     text-align: right;
-    margin-bottom: 20px;
 }
 
 #listHeader p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
+    font-size: 18px;
 }
 
 #listHeader button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #dee2e6;
+    color: #333;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -34,23 +28,16 @@ body {
 }
 
 #listHeader button:hover {
-    background-color: #45a049;
+    background-color: #ced4da;
 }
 
 #orders {
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#orders ul {
-    list-style-type: none;
-}
-
-#orders ul li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    width: 80%;
+    margin: 20px auto;
 }
 
 #orders table {
@@ -58,33 +45,23 @@ body {
     border-collapse: collapse;
 }
 
-#orders table, #orders th, #orders td {
+#orders table tr.title {
+    background-color: #f2f2f2;
+}
+
+#orders table tr.title td {
+    font-weight: bold;
+    padding: 10px;
     border: 1px solid #ddd;
 }
 
-#orders th, #orders td {
+#orders table tr td {
     padding: 10px;
-    text-align: left;
+    border: 1px solid #ddd;
+    text-align: center;
 }
 
-#orders tr.title {
-    background-color: #f2f2f2;
-}
-
-#orders tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-#orders tr:hover {
-    background-color: #f1f1f1;
-}
-
-#orders td.b {
+#orders table tr td.b {
     text-align: right;
     font-weight: bold;
-    background-color: #f2f2f2;
-}
-
-#orders td.b fmt\:formatNumber {
-    font-weight: normal;
 }

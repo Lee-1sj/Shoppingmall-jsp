@@ -1,26 +1,13 @@
 @charset "UTF-8";
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-    margin: 20px;
-}
 
 #qnaHeader {
-    text-align: right;
-    margin-bottom: 20px;
+    text-align: center;
+    margin: 20px auto;
 }
 
 #qnaHeader button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #dee2e6;
+    color: #333;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -28,10 +15,12 @@ body {
 }
 
 #qnaHeader button:hover {
-    background-color: #45a049;
+    background-color: #ced4da;
 }
 
 #qnaList {
+	  width: 700px;
+	  margin: 0 auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -41,6 +30,7 @@ body {
 #qnaList ul {
     list-style-type: none;
     margin-bottom: 20px;
+    padding: 0;
 }
 
 #qnaList ul li {

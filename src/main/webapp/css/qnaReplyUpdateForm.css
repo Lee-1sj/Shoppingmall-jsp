@@ -1,69 +1,63 @@
 @charset "UTF-8";
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
-}
 
 #editForm {
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
+    width: 700px;
+    margin: 20px auto;
 }
 
-#editForm ul {
+.box ul {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-#editForm ul li {
+.box ul li {
     margin-bottom: 20px;
 }
 
-#editForm ul li label {
-    display: block;
-    font-weight: bold;
+.box ul li p {
     margin-bottom: 10px;
 }
 
-#editForm ul li textarea {
+.box ul li label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.box ul li textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 16px;
-    resize: vertical;
+    resize: none;
 }
 
-#editForm ul li.label2 {
-    text-align: right;
+.box ul li.label2 {
+    text-align: center;
 }
 
-#editForm ul li.label2 button {
-    background-color: #4CAF50;
-    color: white;
+.box ul li.label2 button {
+    background-color: #dee2e6;
+    color: #333;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
-    font-size: 16px;
 }
 
-#editForm ul li.label2 button#cancel {
-    background-color: #f44336;
+.box ul li.label2 button:hover {
+    background-color: #ced4da;
 }
 
-#editForm ul li.label2 button:hover {
-    opacity: 0.8;
+.box ul li.label2 #cancel {
+    background-color: #dee2e6;
+}
+
+.box ul li.label2 #cancel:hover {
+    background-color: #ced4da;
 }

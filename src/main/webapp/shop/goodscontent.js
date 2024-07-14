@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	var insertCartButton = document.getElementById('insertCart');
 	if (insertCartButton) { // 버튼이 존재하는지 확인
 		insertCartButton.addEventListener('click', function() {
-			alert("장바구니에 담았습니다.2");
 			var buyer = document.getElementById('buyer').value;
 			var goods_kind = document.getElementById('goods_kind').value;
 			var query = {

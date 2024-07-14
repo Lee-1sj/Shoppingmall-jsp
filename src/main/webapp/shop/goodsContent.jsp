@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <link rel="stylesheet"
 	href="/my-shoppingmall/css/goodsContent.css?ver=2" />
-<script src="/my-shoppingmall/shop/goodscontent.js?ver=4"></script>
+<script src="/my-shoppingmall/shop/goodscontent.js?ver=5"></script>
 
 <div id="cata" class="box2">
 	<ul>

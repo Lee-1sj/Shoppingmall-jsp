@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 #cata {
     background: #fff;
@@ -26,8 +27,7 @@
 }
 
 #cata a:hover {
-    background: #0779e4;
-    color: #fff;
+    background-color: #dee2e6;
 }
 
 #goShop {
@@ -36,17 +36,18 @@
 }
 
 #goShop button {
-    background: #0779e4;
-    color: #fff;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     margin: 5px;
+    font-weight: bold;
 }
 
 #goShop button:hover {
-    background: #005bb5;
+    background-color: #dee2e6;
 }
 
 #cartList {
@@ -78,6 +79,7 @@
 
 #cartList .b {
     font-weight: bold;
+    text-align: center;
 }
 
 #cartList input[type="text"] {
@@ -86,16 +88,17 @@
 }
 
 #cartList button {
-    background: #0779e4;
-    color: #fff;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 #cartList button:hover {
-    background: #005bb5;
+    background-color: #dee2e6;
 }
 
 #cinfo {
@@ -112,15 +115,16 @@
 }
 
 #cinfo input[type="submit"] {
-    background: #0779e4;
-    color: #fff;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     margin: 5px;
+    font-weight: bold;
 }
 
 #cinfo input[type="submit"]:hover {
-    background: #005bb5;
+    background-color: #dee2e6;
 }

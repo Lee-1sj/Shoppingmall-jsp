@@ -17,7 +17,7 @@
 <div id="writeForm" class="box">
    <ul>
       <li>
-          <p>[${goods_title}] 의 QnA </p>
+          <p>[${goods_title}] 상품의 QnA </p>
           <p>QnA내용: ${qna_content}</p>
       </li>
       <li>
@@ -26,7 +26,7 @@
       </li>
       <li class="label2">
           <button id="replyPro">답변하기</button>
-          <button id="cancle">취소</button> 
+          <button id="cancel">취소</button> 
       </li>
    </ul>
 </div>

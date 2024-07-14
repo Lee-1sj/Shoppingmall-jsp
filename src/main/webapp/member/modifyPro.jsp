@@ -5,7 +5,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var check = ${check};
+    	  console.log("modifyPro.jsp loaded");
+    		var check = "<%= request.getAttribute("check") %>";
+        console.log('Check value: ', check); // 디버깅을 위한 콘솔 출력
         if (check === 1) {
             alert("회원정보가 수정되었습니다.");
             window.location.href = "/my-shoppingmall/index.do";

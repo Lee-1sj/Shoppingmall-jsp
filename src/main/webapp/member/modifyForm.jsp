@@ -10,7 +10,7 @@
 </c:if>
 
 <div id="regForm" class="box">
-   <ul>
+   <ul class="m">
       <li><p class="center">회원 정보 수정</p></li>
       <li><label for="id">아이디</label>
           <input id="id" name="id" type="email" size="20" maxlength="50" value="${id}" readonly disabled></li>
@@ -23,7 +23,8 @@
           <input id="address" name="address" type="text" size="30" maxlength="50" value="${m.getAddress()}"></li>
       <li><label for="tel">전화번호</label>
           <input id="tel" name="tel" type="tel" size="20" maxlength="20" value="${m.getTel()}"></li>
-      <li class="label2"><button id="modifyProcess">수정</button>
+      <li class="label2">
+      		<button id="modifyProcess">수정</button>
           <button id="cancel">취소</button></li>
    </ul>
 </div>

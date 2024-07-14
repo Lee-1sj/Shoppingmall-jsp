@@ -27,61 +27,57 @@ public class LogonDBBean {
 	}
 
 	// 회원 가입 처리에서 사용하는 메소드
-	public void insertMember(LogonDataBean member) {
-		String sql = "insert into member (id, passwd, name, reg_date, address, tel) values (?,?,?,?,?,?)";
-		SHA256 sha = SHA256.getInstance();
+    public void insertMember(LogonDataBean member) {
+        String sql = "insert into member (id, passwd, name, reg_date, address, tel) values (?,?,?,?,?,?)";
 
-		try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-			String orgPass = member.getPasswd();
-			System.out.println("member.getPasswd()=" + member.getPasswd());
-			String shaPass = sha.getSha256(orgPass.getBytes());
-			String bcPass = BCrypt.hashpw(shaPass, BCrypt.gensalt());
+            // 비밀번호를 BCrypt로 해싱
+            String orgPass = member.getPasswd();
+            String bcPass = BCrypt.hashpw(orgPass, BCrypt.gensalt());
 
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, bcPass);
-			pstmt.setString(3, member.getName());
-			pstmt.setTimestamp(4, member.getReg_date());
-			pstmt.setString(5, member.getAddress());
-			pstmt.setString(6, member.getTel());
-			pstmt.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+            pstmt.setString(1, member.getId());
+            pstmt.setString(2, bcPass); // 암호화된 비밀번호 저장
+            pstmt.setString(3, member.getName());
+            pstmt.setTimestamp(4, member.getReg_date());
+            pstmt.setString(5, member.getAddress());
+            pstmt.setString(6, member.getTel());
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
-	// 로그인 폼 처리의 사용자 인증 처리에서 사용하는 메소드
-	public int userCheck(String id, String passwd) {
-		int x = -1;
+ // 로그인 폼 처리의 사용자 인증 처리에서 사용하는 메소드
+    public int userCheck(String id, String passwd) {
+        int x = -1;
 
-		SHA256 sha = SHA256.getInstance();
-		try (Connection conn = DBUtil.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select passwd from member where id = ?")) {
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("select passwd from member where id = ?")) {
 
-			String shaPass = sha.getSha256(passwd.getBytes());
-			pstmt.setString(1, id);
+            pstmt.setString(1, id);
 
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) { // 해당 아이디가 있으면 수행
-					String dbpasswd = rs.getString("passwd");
-					if (BCrypt.checkpw(shaPass, dbpasswd)) {
-						x = 1; // 인증 성공
-					} else {
-						x = 0; // 비밀번호 틀림
-					}
-				} else {
-					x = -1; // 아이디 없음
-				}
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return x;
-	}
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) { // 해당 아이디가 있으면 수행
+                    String dbpasswd = rs.getString("passwd");
+                    if (BCrypt.checkpw(passwd, dbpasswd)) { // BCrypt로 비밀번호 비교
+                        x = 1; // 인증 성공
+                    } else {
+                        x = 0; // 비밀번호 틀림
+                    }
+                } else {
+                    x = -1; // 아이디 없음
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return x;
+    }
 
 	// 아이디 중복 확인에서 아이디의 중복 여부를 확인하는 메소드
 	public int confirmId(String id) {
@@ -106,30 +102,31 @@ public class LogonDBBean {
 	}
 
 	// 주어진 id에 해당하는 회원 정보를 얻어내는 메소드
-	public LogonDataBean getMember(String id) {
-		LogonDataBean member = null;
-		String sql = "select * from member where id = ?";
+    public LogonDataBean getMember(String id) {
+        LogonDataBean member = null;
+        String sql = "select * from member where id = ?";
 
-		try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, id);
+        try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
 
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) { // 해당 아이디에 대한 레코드가 존재
-					member = new LogonDataBean(); // 데이터 저장빈 객체 생성
-					member.setId(rs.getString("id"));
-					member.setName(rs.getString("name"));
-					member.setReg_date(rs.getTimestamp("reg_date"));
-					member.setAddress(rs.getString("address"));
-					member.setTel(rs.getString("tel"));
-				}
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return member; // 데이터 저장빈 객체 member 리턴
-	}
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) { // 해당 아이디에 대한 레코드가 존재
+                    member = new LogonDataBean(); // 데이터 저장빈 객체 생성
+                    member.setId(rs.getString("id"));
+                    member.setPasswd(rs.getString("passwd")); // 비밀번호 추가
+                    member.setName(rs.getString("name"));
+                    member.setReg_date(rs.getTimestamp("reg_date"));
+                    member.setAddress(rs.getString("address"));
+                    member.setTel(rs.getString("tel"));
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return member; // 데이터 저장빈 객체 member 리턴
+    }
 
 	// 주어진 id, passwd에 해당하는 회원 정보를 얻어내는 메소드
 	public LogonDataBean getMember(String id, String passwd) {
@@ -165,74 +162,73 @@ public class LogonDBBean {
 	}
 
 	// 회원 정보 수정을 처리하는 메소드
-	public int updateMember(LogonDataBean member) {
-		int x = -1;
-		SHA256 sha = SHA256.getInstance(); // 오타 수정
+    public int updateMember(LogonDataBean member) {
+        int x = -1;
 
-		String selectSql = "select passwd from member where id = ?";
-		String updateSql = "update member set name=?, address=?, tel=? where id=?";
+        String selectSql = "select passwd from member where id = ?";
+        String updateSql = "update member set passwd=?, name=?, address=?, tel=? where id=?";
 
-		try (Connection conn = DBUtil.getConnection();
-				PreparedStatement selectPstmt = conn.prepareStatement(selectSql)) {
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement selectPstmt = conn.prepareStatement(selectSql)) {
 
-			String shaPass = sha.getSha256(member.getPasswd().getBytes());
+            selectPstmt.setString(1, member.getId());
+            try (ResultSet rs = selectPstmt.executeQuery()) {
+                if (rs.next()) { // 해당 아이디가 있으면 수행
+                    String dbpasswd = rs.getString("passwd");
 
-			selectPstmt.setString(1, member.getId());
-			try (ResultSet rs = selectPstmt.executeQuery()) {
-				if (rs.next()) { // 해당 아이디가 있으면 수행
-					String dbpasswd = rs.getString("passwd");
-					if (BCrypt.checkpw(shaPass, dbpasswd)) {
-						try (PreparedStatement updatePstmt = conn.prepareStatement(updateSql)) {
-							updatePstmt.setString(1, member.getName());
-							updatePstmt.setString(2, member.getAddress());
-							updatePstmt.setString(3, member.getTel());
-							updatePstmt.setString(4, member.getId());
-							updatePstmt.executeUpdate();
-							x = 1; // 회원정보 수정 처리 성공
-						}
-					} else {
-						x = 0; // 회원정보 수정 처리 실패
-					}
-				}
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return x;
-	}
+                    if (BCrypt.checkpw(member.getPasswd(), dbpasswd)) { // 기존 비밀번호를 BCrypt로 비교
+                        String newBcPass = BCrypt.hashpw(member.getPasswd(), BCrypt.gensalt()); // 새로운 비밀번호도 암호화하여 저장
 
-	// 회원 정보를 삭제하는 메소드
-	public int deleteMember(String id, String passwd) {
-		int x = -1;
-		SHA256 sha = SHA256.getInstance();
-		String selectSql = "select passwd from member where id = ?";
-		String deleteSql = "delete from member where id = ?";
+                        try (PreparedStatement updatePstmt = conn.prepareStatement(updateSql)) {
+                            updatePstmt.setString(1, newBcPass);
+                            updatePstmt.setString(2, member.getName());
+                            updatePstmt.setString(3, member.getAddress());
+                            updatePstmt.setString(4, member.getTel());
+                            updatePstmt.setString(5, member.getId());
+                            updatePstmt.executeUpdate();
+                            x = 1; // 회원정보 수정 처리 성공
+                        }
+                    } else {
+                        x = 0; // 회원정보 수정 처리 실패 (비밀번호 틀림)
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return x;
+    }
 
-		try (Connection conn = DBUtil.getConnection();
-				PreparedStatement selectPstmt = conn.prepareStatement(selectSql)) {
-			String shaPass = sha.getSha256(passwd.getBytes());
-			selectPstmt.setString(1, id);
-			try (ResultSet rs = selectPstmt.executeQuery()) {
-				if (rs.next()) {
-					String dbpasswd = rs.getString("passwd");
-					if (BCrypt.checkpw(shaPass, dbpasswd)) {
-						try (PreparedStatement deletePstmt = conn.prepareStatement(deleteSql)) {
-							deletePstmt.setString(1, id);
-							deletePstmt.executeUpdate();
-							x = 1; // 회원탈퇴처리 성공
-						}
-					} else {
-						x = 0; // 회원탈퇴 처리 실패
-					}
-				}
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return x;
-	}
+ // 회원 정보를 삭제하는 메소드
+    public int deleteMember(String id, String passwd) {
+        int x = -1;
+        String selectSql = "select passwd from member where id = ?";
+        String deleteSql = "delete from member where id = ?";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement selectPstmt = conn.prepareStatement(selectSql)) {
+            selectPstmt.setString(1, id);
+            try (ResultSet rs = selectPstmt.executeQuery()) {
+                if (rs.next()) {
+                    String dbpasswd = rs.getString("passwd");
+                    if (BCrypt.checkpw(passwd, dbpasswd)) { // BCrypt로 비밀번호 비교
+                        try (PreparedStatement deletePstmt = conn.prepareStatement(deleteSql)) {
+                            deletePstmt.setString(1, id);
+                            deletePstmt.executeUpdate();
+                            x = 1; // 회원탈퇴처리 성공
+                        }
+                    } else {
+                        x = 0; // 회원탈퇴 처리 실패
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return x;
+    }
 }

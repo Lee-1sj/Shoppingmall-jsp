@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import goodsshop.bean.LogonDBBean;
 import goodsshop.bean.LogonDataBean;
 import goodsshop.process.CommandAction;
+import work.crypt.BCrypt;
+import work.crypt.SHA256;
 
 public class ModifyProAction implements CommandAction {
 
@@ -13,36 +15,46 @@ public class ModifyProAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
 
-		// 입력 값 확인
-		String id = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
-		String name = request.getParameter("name");
-		String address = request.getParameter("address");
-		String tel = request.getParameter("tel");
+        // 입력 값 확인
+        String id = request.getParameter("id");
+        String passwd = request.getParameter("passwd");
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String tel = request.getParameter("tel");
 
-		if (id == null || id.isEmpty() || passwd == null || passwd.isEmpty() || name == null || name.isEmpty()
-				|| address == null || address.isEmpty() || tel == null || tel.isEmpty()) {
-			// 입력 값이 부족할 경우 처리
-			request.setAttribute("check", Integer.valueOf(-1)); // 예: -1은 입력 값 부족을 의미
-			return "/member/modifyPro.jsp";
-		}
+        if (id == null || id.isEmpty() || passwd == null || passwd.isEmpty() || name == null || name.isEmpty()
+                || address == null || address.isEmpty() || tel == null || tel.isEmpty()) {
+            // 입력 값이 부족할 경우 처리
+            request.setAttribute("check", -1); // 예: -1은 입력 값 부족을 의미
+            System.out.println("ModifyProAction: 입력 값 부족");
+            return "/member/modifyPro.jsp";
+        }
 
-		// 수정할 회원 정보 설정
-		LogonDataBean member = new LogonDataBean();
-		member.setId(id);
-		member.setPasswd(passwd);
-		member.setName(name);
-		member.setAddress(address);
-		member.setTel(tel);
+        // 데이터베이스에서 현재 비밀번호 가져오기
+        LogonDBBean manager = LogonDBBean.getInstance();
+        LogonDataBean member = manager.getMember(id); // getMember 메소드가 존재한다고 가정
 
-		// 수정할 회원 정보를 가지고 수정 처리 후 성공여부 반환
-		LogonDBBean manager = LogonDBBean.getInstance();
-		int check = manager.updateMember(member);
+        // 비밀번호 확인
+        SHA256 sha = SHA256.getInstance();
+        String shaPass = sha.getSha256(passwd.getBytes());
+        if (!BCrypt.checkpw(shaPass, member.getPasswd())) {
+            request.setAttribute("check", 0); // 비밀번호 틀림
+            return "/member/modifyPro.jsp";
+        }
 
-		// 디버깅을 위한 로그
-		System.out.println("ModifyProAction: id=" + id + ", check=" + check);
+        // 수정할 회원 정보 설정
+        member.setPasswd(passwd); // 필요시 새 비밀번호를 암호화하여 저장
+        member.setName(name);
+        member.setAddress(address);
+        member.setTel(tel);
 
-		request.setAttribute("check", Integer.valueOf(check));
-		return "/member/modifyPro.jsp";
+        // 회원 정보 수정 처리
+        int check = manager.updateMember(member);
+
+        // 디버깅을 위한 로그
+        System.out.println("ModifyProAction: id=" + id + ", check=" + check);
+
+        request.setAttribute("check", check);
+        return "/member/modifyPro.jsp";
 	}
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<link rel="stylesheet" href="/my-shoppingmall/css/qnaReplyUpdateForm.css"/>
+<link rel="stylesheet" href="/my-shoppingmall/css/qnaReplyUpdateForm.css?ver=2"/>
 <script src="/my-shoppingmall/mngr/qnaProcess/qnaupdate.js?ver=1"></script>
 
 <c:if test="${empty sessionScope.id}">

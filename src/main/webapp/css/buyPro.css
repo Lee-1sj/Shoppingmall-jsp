@@ -1,14 +1,14 @@
 @charset "UTF-8";
 #orderResult {
-    width: 80%;
+    width: 700px;
     margin: 50px auto 20px;
     padding: 20px;
-    background: #e0f7fa;
-    border: 1px solid #b2ebf2;
-    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+	  border-radius: 8px;
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     font-size: 18px;
-    color: #00796b;
 }
 
 #orderResult p {
@@ -25,8 +25,8 @@
 }
 
 #buyProcess input[type="submit"] {
-    background: #007bff;
-    color: #fff;
+    background-color: #e9ecef;
+    color: #333;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -36,5 +36,5 @@
 }
 
 #buyProcess input[type="submit"]:hover {
-    background: #0056b3;
+    background-color: #dee2e6;
 }

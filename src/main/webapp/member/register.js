@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					console.error('Error:', xhr.statusText);
 				}
 			};
-			xhr.onerror = function() { // 수정된 부분
+			xhr.onerror = function() {
 				console.error('Request failed');
 			};
 			xhr.send("id=" + encodeURIComponent(query.id));
@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		window.location.href = '/my-shoppingmall/index.do';
 	});
 
-	// [가입하기] 버튼 클릭 (수정된 부분)
+	// [가입하기] 버튼 클릭
 	var processButton = document.getElementById('process');
 	processButton.addEventListener('click', function() {
-		alert('가입하기3');
+		alert('가입');
 		var query = {
 			id: document.getElementById('id').value,
 			passwd: document.getElementById('passwd').value,

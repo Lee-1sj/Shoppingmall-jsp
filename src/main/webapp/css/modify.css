@@ -1,83 +1,68 @@
 @charset "UTF-8";
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
+#mStatus {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#content {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+form {
+  margin-bottom: 20px;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
+#uForm ul, #dForm ul {
+  list-style: none;
+  padding: 0;
 }
 
-#regForm, #mStatus {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#regForm ul, #mStatus ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#regForm li, #mStatus li {
-    margin-bottom: 15px;
+#uForm li, #dForm li {
+  margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-input[type="submit"],
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 3px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+#uForm input[type="submit"], #dForm input[type="submit"], #shopMain {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #e9ecef;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
 }
 
-input[type="submit"]:hover,
-button:hover {
-    background-color: #0056b3;
+#uForm input[type="submit"]:hover, #dForm input[type="submit"]:hover, #shopMain:hover {
+  background-color: #dee2e6;
 }
 
-button {
-    display: inline-block;
-    margin-top: 15px;
+#dForm small.cau {
+  display: block;
+  margin-top: 5px;
+  color: red;
 }
 
-.small {
-    color: #666;
-    font-size: 12px;
+#shopMain {
+  background-color: #e9ecef;
+}
+
+#shopMain:hover {
+  background-color: #dee2e6;
 }

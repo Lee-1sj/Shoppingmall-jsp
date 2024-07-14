@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<link rel="stylesheet" href="/shoppingmall/css/qnaList.css" />
-<script src="/shoppingmall/mngr/qnaProcess/qnaList.js"></script>
+<link rel="stylesheet" href="/my-shoppingmall/css/qnaList.css" />
+<script src="/my-shoppingmall/mngr/qnaProcess/qnaList.js"></script>
 
 <c:if test="${empty sessionScope.id}">
     <meta http-equiv="Refresh" content="0;url=/my-shoppingmall/mg/managerMain.do">
@@ -24,7 +24,7 @@
                 <c:if test="${qna.getQora()==1}">
                     <li>
                         <p>[${qna.getGoods_title()}] 상품에 대한 QnA</p>
-                        <p>${qna.getQna_writer()}<small class="date">(${qna.getReg_date()})</small></p>
+                        <p>${qna.getQna_writer()}<small class="date">&nbsp;(${qna.getReg_date()})</small></p>
                         <p>${qna.getQna_content()}</p>
                         <c:if test="${qna.getReply()==0}">
                             <p><button id="reply" name="${qna.getQna_id()}" onclick="reply(this)">답변하기</button></p>
