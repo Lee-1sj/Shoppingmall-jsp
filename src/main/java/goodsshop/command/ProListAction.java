@@ -16,7 +16,6 @@ public class ProListAction implements CommandAction {
 		String goods_kind = request.getParameter("goods_kind");
 
 		if (goods_kind == null || goods_kind.isEmpty()) {
-			// 기본값 설정 또는 에러 처리
 			throw new IllegalArgumentException("Invalid goods_kind parameter");
 		}
 
@@ -37,7 +36,6 @@ public class ProListAction implements CommandAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// 해당 뷰에서 사용할 속성
 		request.setAttribute("count", Integer.valueOf(count));
 		request.setAttribute("goods_kind", goods_kind);
 		request.setAttribute("type", Integer.valueOf(1));

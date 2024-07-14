@@ -140,7 +140,7 @@ public class Controller extends HttpServlet {
 			request.setAttribute("type", type);
 		} else {
 			System.out.println("Setting type attribute to default (1)");
-			request.setAttribute("type", 1); // 기본값을 설정 (예: 1은 일반 사용자)
+			request.setAttribute("type", 1); // 기본값 설정
 		}
 		
 		request.setAttribute("cont", view);

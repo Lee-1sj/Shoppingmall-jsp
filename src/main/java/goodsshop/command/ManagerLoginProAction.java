@@ -13,7 +13,7 @@ public class ManagerLoginProAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		request.setCharacterEncoding("utf-8"); // 한글 인코딩
+		request.setCharacterEncoding("utf-8");
 
         // 넘어온 요청의 데이터를 얻어냄
         String id = request.getParameter("id");
@@ -44,7 +44,7 @@ public class ManagerLoginProAction implements CommandAction {
 
         out.print(json.toString());
         out.flush();
-        return null; // 뷰 페이지를 반환하지 않음
+        return null; 
 	}
 
 }

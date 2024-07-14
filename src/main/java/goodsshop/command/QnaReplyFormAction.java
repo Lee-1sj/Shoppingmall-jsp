@@ -39,11 +39,10 @@ public class QnaReplyFormAction implements CommandAction {
 			return "/mngr/qnaProcess/qnaReplyForm.jsp";
 
 		} catch (NumberFormatException e) {
-			// qna_id가 잘못된 경우 예외 처리
+			// qna_id가 잘못된 경우
 			request.setAttribute("error", "Invalid QnA ID format.");
 			return "/error.jsp"; 
 		} catch (Exception e) {
-			// 기타 예외 처리
 			request.setAttribute("error", e.getMessage());
 			return "/error.jsp"; 
 		}

@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 				window.location.href = "/my-shoppingmall/index.do";
-			} else if (xhr.readyState === XMLHttpRequest.DONE) { // 수정된 부분
+			} else if (xhr.readyState === XMLHttpRequest.DONE) {
 				console.error('Error:', xhr.statusText);
 			}
 		};
-		xhr.onerror = function() { // 수정된 부분
+		xhr.onerror = function() {
 			console.error('Request failed');
 		};
 		xhr.send("id=" + encodeURIComponent(query.id) +

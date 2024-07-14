@@ -25,14 +25,14 @@ public class ModifyProAction implements CommandAction {
         if (id == null || id.isEmpty() || passwd == null || passwd.isEmpty() || name == null || name.isEmpty()
                 || address == null || address.isEmpty() || tel == null || tel.isEmpty()) {
             // 입력 값이 부족할 경우 처리
-            request.setAttribute("check", -1); // 예: -1은 입력 값 부족을 의미
+            request.setAttribute("check", -1); // -1은 입력 값 부족을 의미
             System.out.println("ModifyProAction: 입력 값 부족");
             return "/member/modifyPro.jsp";
         }
 
         // 데이터베이스에서 현재 비밀번호 가져오기
         LogonDBBean manager = LogonDBBean.getInstance();
-        LogonDataBean member = manager.getMember(id); // getMember 메소드가 존재한다고 가정
+        LogonDataBean member = manager.getMember(id);
 
         // 비밀번호 확인
         SHA256 sha = SHA256.getInstance();
@@ -43,7 +43,7 @@ public class ModifyProAction implements CommandAction {
         }
 
         // 수정할 회원 정보 설정
-        member.setPasswd(passwd); // 필요시 새 비밀번호를 암호화하여 저장
+        member.setPasswd(passwd); 
         member.setName(name);
         member.setAddress(address);
         member.setTel(tel);
@@ -51,7 +51,6 @@ public class ModifyProAction implements CommandAction {
         // 회원 정보 수정 처리
         int check = manager.updateMember(member);
 
-        // 디버깅을 위한 로그
         System.out.println("ModifyProAction: id=" + id + ", check=" + check);
 
         request.setAttribute("check", check);

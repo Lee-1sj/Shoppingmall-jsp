@@ -20,7 +20,7 @@ public class QnaProAction implements CommandAction {
 			String qnaContent = request.getParameter("qna_content");
 			int goodsId = Integer.parseInt(request.getParameter("goods_id"));
 			byte qora = Byte.parseByte(request.getParameter("qora"));
-			byte reply = 0; // 답변여부 - 미답변
+			byte reply = 0; // 답변여부 미답변
 
 			// qna를 추가하기 위한 정보작성
 			QnaDataBean qna = new QnaDataBean();
@@ -39,7 +39,7 @@ public class QnaProAction implements CommandAction {
 			request.setAttribute("check", Integer.valueOf(check));
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("check", Integer.valueOf(-1)); // 에러 발생 시 -1 설정
+			request.setAttribute("check", Integer.valueOf(-1)); // 에러 발생 -1 설정
 		}
 		return "/qna/qnaPro.jsp";
 	}

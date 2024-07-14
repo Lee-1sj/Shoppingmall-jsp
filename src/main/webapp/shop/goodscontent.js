@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 	// [장바구니에 담기] 버튼 클릭
 	var insertCartButton = document.getElementById('insertCart');
-	if (insertCartButton) { // 버튼이 존재하는지 확인
+	if (insertCartButton) { 
 		insertCartButton.addEventListener('click', function() {
 			var buyer = document.getElementById('buyer').value;
 			var goods_kind = document.getElementById('goods_kind').value;
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// [상품QnA쓰기] 버튼 클릭
 	var writeQnaButton = document.getElementById('writeQna');
-	if (writeQnaButton) { // 버튼이 존재하는지 확인
+	if (writeQnaButton) { 
 		writeQnaButton.addEventListener('click', function() {
 			var goods_id = document.getElementById('goods_id').value;
 			var goods_kind = document.getElementById('goods_kind').value;
@@ -103,6 +103,6 @@ function del(delBtn) {
 		console.error('Request failed');
 	};
 
-	// 쿼리 문자열 생성 및 전송
+	// 쿼리 문자열 생성 전송
 	xhr.send("qna_id=" + encodeURIComponent(query.qna_id));
 }

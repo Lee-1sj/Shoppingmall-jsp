@@ -23,7 +23,6 @@ public class PassCrypt {
         PreparedStatement pstmt = null;
         ResultSet rs= null;
         
-        //SHA-256를 사용하는 SHA256클래스의 객체를 얻어낸다.
         SHA256 sha = SHA256.getInstance();
         
         try {
