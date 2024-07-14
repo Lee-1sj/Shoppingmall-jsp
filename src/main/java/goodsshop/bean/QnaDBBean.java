@@ -189,39 +189,47 @@ public class QnaDBBean {
 		return articleList; // List객체의 레퍼런스를 리턴
 	} // end of getArticles(count)
 
-	// 특정 책에 대해 작성한 qna글을 지정한 수 만큼 얻어냄
+	// 특정 상품에 대해 작성한 qna글을 지정한 수 만큼 얻어냄
 	public List<QnaDataBean> getArticles(int count, int goods_id) {
-		List<QnaDataBean> articleList = new ArrayList<>();
-		String sql = "SELECT * FROM qna WHERE goods_id = ? ORDER BY group_id DESC, qora ASC LIMIT ?";
+	    List<QnaDataBean> articleList = new ArrayList<>();
+	    String sql = "SELECT * FROM ("
+	               + "    SELECT a.*, ROWNUM rnum"
+	               + "    FROM ("
+	               + "        SELECT * FROM qna WHERE goods_id = ? ORDER BY group_id DESC, qora ASC"
+	               + "    ) a"
+	               + "    WHERE ROWNUM <= ?"
+	               + ") "
+	               + "WHERE rnum > ?";
 
-		try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	    try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setInt(1, goods_id);
+	        pstmt.setInt(2, count); // ROWNUM <= ? 설정
+	        pstmt.setInt(3, 0); // rnum > ? 설정, 0부터 시작
 
-			pstmt.setInt(1, goods_id);
-			pstmt.setInt(2, count);
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            while (rs.next()) {
+	                QnaDataBean article = new QnaDataBean();
+	                article.setQna_id(rs.getInt("qna_id"));
+	                article.setGoods_id(rs.getInt("goods_id"));
+	                article.setGoods_title(rs.getString("goods_title"));
+	                article.setQna_writer(rs.getString("qna_writer"));
+	                article.setQna_content(rs.getString("qna_content"));
+	                article.setGroup_id(rs.getInt("group_id"));
+	                article.setQora(rs.getByte("qora"));
+	                article.setReply(rs.getByte("reply"));
+	                article.setReg_date(rs.getTimestamp("reg_date"));
 
-			try (ResultSet rs = pstmt.executeQuery()) {
-				while (rs.next()) {
-					QnaDataBean article = new QnaDataBean();
-					article.setQna_id(rs.getInt("qna_id"));
-					article.setGoods_id(rs.getInt("goods_id"));
-					article.setGoods_title(rs.getString("goods_title"));
-					article.setQna_writer(rs.getString("qna_writer"));
-					article.setQna_content(rs.getString("qna_content"));
-					article.setGroup_id(rs.getInt("group_id"));
-					article.setQora(rs.getByte("qora"));
-					article.setReply(rs.getByte("reply"));
-					article.setReg_date(rs.getTimestamp("reg_date"));
+	                // List객체에 데이터저장빈인 QnaDataBean객체를 저장
+	                articleList.add(article);
+	            }
+	        }
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    }
 
-					// List객체에 데이터저장빈인 QnaDataBean객체를 저장
-					articleList.add(article);
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		return articleList; 
+	    return articleList; 
 	}
+
 
 	// QnA 글 수정폼에서 사용할 글의 내용
 	public QnaDataBean updateGetArticle(int qna_id) {

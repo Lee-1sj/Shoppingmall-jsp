@@ -82,21 +82,6 @@ create table buy(
   sanction varchar2(20) default '상품준비중'
 );
 
---board table
-create table board(
-  num number not null primary key,
-  writer varchar2(50) not null,
-  subject varchar2(50) not null,
-  content varchar2(200) not null,
-  passwd varchar2(60) not null,
-  reg_date TIMESTAMP not null,
-  ip varchar2(30) not null,
-  readcount number default 0,
-  ref number not null,
-  re_step number not null,
-  re_level number not null
-);
-CREATE SEQUENCE board_seq START WITH 1 INCREMENT BY 1;
 
 ----------------------------------SQL statement----------------------------------
 
@@ -109,24 +94,23 @@ select * from qna;
 select * from bank;
 select * from cart;
 select * from buy;
-select * from board;
 
 -------------------------- transaction --------------------------
+
 COMMIT;
-ROLLBACK;
 
 -------------------------- insert --------------------------
 
 --member
 insert into member(id, passwd, name, reg_date, address, tel) 
-values('lee1212@naver.com','1234','이석진',  SYSDATE , '서울시 송파구', '010-3333-3333');
+values('lee','1234','이석진',  SYSDATE , '서울시 송파구', '010-3333-3333');
 insert into member(id, passwd, name, reg_date, address, tel) 
-values('kim1212@naver.com','1234','김건우', SYSDATE , '경기도 남양주', '010-4444-4444');
+values('kim','1234','김건우', SYSDATE , '경기도 남양주', '010-4444-4444');
 insert into member(id, passwd, name, reg_date, address, tel) 
-values('kimrr12123@naver.com','1234','김맹구', SYSDATE , '서울시 강남구', '010-5555-5555');
+values('jjang','1234','김짱구', SYSDATE , '서울시 강남구', '010-5555-5555');
 
 --manager
-insert into manager(managerId,managerPasswd) values('leelee','123456');
+insert into manager(managerId,managerPasswd) values('leelee','1234');
 
 --goods
 -- 예시 데이터 (상의)
@@ -171,19 +155,11 @@ INSERT INTO goods VALUES (
 --bank
 insert into bank(account, bank, name) values('11111-111-11111','내일은행','이석진');
 insert into bank(account, bank, name) values('22222-222-22222','미래은행','김건우');
-insert into bank(account, bank, name) values('11111-111-11111','미래은행','김맹구');
+insert into bank(account, bank, name) values('11111-111-11111','미래은행','김짱구');
+insert into bank(account, bank, name) values('11111-111-11111','오늘은행','ccc');
 commit;
 
--------------------------- drop --------------------------
 
-drop table member;
-drop table manager;
-drop table goods;
-drop table qna;
-drop table bank;
-drop table cart;
-drop table buy;
-drop table board;
+DELETE FROM MANAGER WHERE  managerId = 'leelee';
+SELECT * FROM manager WHERE managerId = 'leelee';
 
-DELETE FROM MANAGER WHERE  managerId = 'lsj';
-SELECT * FROM manager WHERE managerId = 'lsj';
