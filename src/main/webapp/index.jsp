@@ -18,3 +18,12 @@
 <div id="content" class="box2">
 	<jsp:include page="${cont}"/>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('success') && urlParams.get('success') === 'true') {
+            alert('회원 정보가 수정되었습니다.');
+        }
+    });
+</script>

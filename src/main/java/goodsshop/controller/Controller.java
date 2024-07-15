@@ -133,7 +133,7 @@ public class Controller extends HttpServlet {
 		if (view != null && !view.startsWith("/")) {
 			view = "/" + view;
 		}
-
+		
 		Object type = request.getAttribute("type");
 		if (type != null) {
 			System.out.println("Setting type attribute to: " + type);

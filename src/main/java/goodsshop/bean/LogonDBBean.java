@@ -132,25 +132,27 @@ public class LogonDBBean {
 	public LogonDataBean getMember(String id, String passwd) {
 		LogonDataBean member = null;
 		String sql = "select * from member where id = ?";
-		SHA256 sha = SHA256.getInstance();
 
 		try (Connection conn = DBUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-			String shaPass = sha.getSha256(passwd.getBytes());
 
 			pstmt.setString(1, id);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) { // 해당 아이디에 대한 레코드가 존재
 					String dbpasswd = rs.getString("passwd");
 					// 사용자가 입력한 비밀번호와 테이블의 비밀번호가 같으면 수행
-					if (BCrypt.checkpw(shaPass, dbpasswd)) {
+					if (BCrypt.checkpw(passwd, dbpasswd)) {
+						System.out.println("Password match successful");
 						member = new LogonDataBean(); // 데이터저장빈 객체생성
 						member.setId(rs.getString("id"));
 						member.setName(rs.getString("name"));
 						member.setReg_date(rs.getTimestamp("reg_date"));
 						member.setAddress(rs.getString("address"));
 						member.setTel(rs.getString("tel"));
-					}
+					} else {
+                        System.out.println("Password match failed");
+                    }
+				} else {
+					System.out.println("No member found with the given ID");
 				}
 			}
 		} catch (SQLException ex) {
@@ -165,34 +167,26 @@ public class LogonDBBean {
     public int updateMember(LogonDataBean member) {
         int x = -1;
 
-        String selectSql = "select passwd from member where id = ?";
         String updateSql = "update member set passwd=?, name=?, address=?, tel=? where id=?";
 
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement selectPstmt = conn.prepareStatement(selectSql)) {
+             PreparedStatement updatePstmt = conn.prepareStatement(updateSql)) {
 
-            selectPstmt.setString(1, member.getId());
-            try (ResultSet rs = selectPstmt.executeQuery()) {
-                if (rs.next()) { // 해당 아이디가 있으면 수행
-                    String dbpasswd = rs.getString("passwd");
+            // 새 비밀번호를 BCrypt로 암호화하여 저장
+            String newBcPass = BCrypt.hashpw(member.getPasswd(), BCrypt.gensalt());
 
-                    if (BCrypt.checkpw(member.getPasswd(), dbpasswd)) { // 기존 비밀번호를 BCrypt로 비교
-                        String newBcPass = BCrypt.hashpw(member.getPasswd(), BCrypt.gensalt()); // 새로운 비밀번호도 암호화하여 저장
+            updatePstmt.setString(1, newBcPass);
+            updatePstmt.setString(2, member.getName());
+            updatePstmt.setString(3, member.getAddress());
+            updatePstmt.setString(4, member.getTel());
+            updatePstmt.setString(5, member.getId());
 
-                        try (PreparedStatement updatePstmt = conn.prepareStatement(updateSql)) {
-                            updatePstmt.setString(1, newBcPass);
-                            updatePstmt.setString(2, member.getName());
-                            updatePstmt.setString(3, member.getAddress());
-                            updatePstmt.setString(4, member.getTel());
-                            updatePstmt.setString(5, member.getId());
-                            updatePstmt.executeUpdate();
-                            x = 1; // 회원정보 수정 처리 성공
-                        }
-                    } else {
-                        x = 0; // 회원정보 수정 처리 실패 (비밀번호 틀림)
-                    }
-                }
+            int rowsUpdated = updatePstmt.executeUpdate();
+            System.out.println("Rows updated: " + rowsUpdated);
+            if (rowsUpdated > 0) {
+                x = 1; // 회원정보 수정 처리 성공
             }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {

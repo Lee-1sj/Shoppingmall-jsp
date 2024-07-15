@@ -2,6 +2,7 @@ package goodsshop.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import goodsshop.bean.LogonDBBean;
 import goodsshop.bean.LogonDataBean;
@@ -13,8 +14,14 @@ public class ModifyFormAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
 
-		String id = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
+		HttpSession session = request.getSession();
+        String id = (String) session.getAttribute("id");
+        String passwd = (String) session.getAttribute("passwd");
+		
+		 // 디버깅 로그
+        System.out.println("ModifyFormAction invoked");
+        System.out.println("ID: " + id);
+        System.out.println("Password: " + passwd);
 
 		// 회원 정보를 수정하기 위한 정보를 얻어냄
 		LogonDBBean manager = LogonDBBean.getInstance();

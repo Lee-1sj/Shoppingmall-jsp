@@ -24,7 +24,7 @@
           <c:set var="goods_kindName" value="하의"/>
         </c:when>
       </c:choose>
-      <p class="b">[${goods_kindName}] New 신상 입고
+      <p class="b">[${goods_kindName}] New 신상
         <a class="more" href="/my-shoppingmall/list.do?goods_kind=${goods.goods_kind}">더보기</a>
       </p>
       <div class="product-details">
